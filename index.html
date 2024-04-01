@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Radio Button Toggle</title>
+  <style>
+    /* Hide the default radio buttons */
+    .radio-group input[type="radio"] {
+      display: none;
+    }
+
+    /* Style for custom radio button indicators */
+    .radio-group label {
+      display: inline-block;
+      border: 2px solid #ccc;
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+
+    /* Style for the selected radio button */
+    .radio-group input[type="radio"]:checked + label {
+      background-color: #4CAF50; /* or your preferred color */
+    }
+  </style>
+</head>
+<body>
+
+  <div class="radio-group">
+    <input type="radio" name="choice" id="option1" checked> 
+    <label for="option1"></label>Option 1
+
+    <input type="radio" name="choice" id="option2"> 
+    <label for="option2"></label>Option 2
+  </div>
+
+  <button id="toggleButton" oncontextmenu="return false;">Toggle Radio</button>
+
+  <script>
+    const toggleButton = document.getElementById("toggleButton");
+    const radioInputs = document.querySelectorAll('.radio-group input[type="radio"]');
+
+    toggleButton.addEventListener('click', () => {
+      let selectedIndex = -1;
+      for (let i = 0; i < radioInputs.length; i++) {
+        if (radioInputs[i].checked) {
+          selectedIndex = i;
+          break;
+        }
+      }
+
+      // Select the next radio button
+      let nextIndex = (selectedIndex + 1) % radioInputs.length;
+      radioInputs[nextIndex].checked = true;
+    });
+  </script>
+</body>
+</html>

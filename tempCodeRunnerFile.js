@@ -1,10 +1,12 @@
+const http = require("http");
 
-function add(x){
-    return x+3;
-}
+const port = process.env.PORT || 3000;
 
-function multi(x){
-    return x*3;
-}
-const output=multi(add(4));
-console.log(output);
+const server = http.createServer((req, res) => {
+    res.writeHead(200,{ 'Content-Type' : 'text/plain'});
+    res.end("Hey it's me");
+})
+
+server.listen(port, () => {
+    console.log(`Listening Port http://localhost:${port}/`);
+})
